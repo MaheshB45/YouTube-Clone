@@ -1,13 +1,19 @@
-const apiKey = "AIzaSyA-jM5KMjOaFiqz7iCCNsuaenA-GaQdHnE";
+const apiKey = "AIzaSyAbPzWReORQfvFeis6me7LENetU2ddxsn4";
+const baseUrl = "https://www.googleapis.com/youtube/v3";
 const url = "https://www.googleapis.com/youtube/v3/commentThreads";
 const commentsContainer = document.getElementById("comments-container");
 
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
+const videolist = document.getElementById("v-list");
 
+let searchLink = "https://www.youtube.com/results?search_query=";
 // Add a click event listener to the search button
 searchButton.addEventListener("click", () => {
   const searchValue = searchInput.value;
+  if(searchInput.value.length){
+    location.href = searchLink + searchInput.value;
+  }
   fetchSearchResults(searchValue);
   searchInput.value = ""; // Clear the input field after clicking the button
 });
@@ -54,47 +60,22 @@ async function loadComments(videoId) {
 }
 
 function renderVideosOntoUI(videosList) {
-    // videosList will be an array of video objects.
-    container.innerHTML = "";
-    videosList.forEach((video) => {
-      const videoContainer = document.createElement("div");
-      videoContainer.className = "videolist";
-      videoContainer.innerHTML = `
-          <img
+  videosList.forEach((video) => {
+    videolist = document.createElement("div");
+    videolist.className = "list-item";
+    videolist.innerHTML = `
+            <img
               src="${video.snippet.thumbnails.high.url}"
+              alt=""
               class="thumbnail"
-              alt="thumbnail"
-          />
-          <div class="bottom-container">
-              <div class="logo-container">
-              <img class="logo" src="${video.channelLogo}" alt="Channel Logo" />
-              </div>
-              <div class="title-container">
-              <p class="title">
-                  ${video.snippet.title}
-              </p>
-              <p class="gray-text">${video.snippet.channelTitle}</p>
-              <p class="gray-text">${
-                video.statistics.viewCount
-              } Views . ${calculateTheTimeGap(video.snippet.publishTime)}</p>
-              </div>
-          </div>`;
-  
-      videoContainer.addEventListener("click", () => {
-        navigateToVideoDetails(video.id.videoId);
-      });
-  
-      container.appendChild(videoContainer);
-    });
-  }
-  async function getVideoStatistics(videoId) {
-    // https://www.googleapis.com/youtube/v3/videos?key=AIzaSyDvo2p4xMEI3GC-PWH02_0OAIN1h88k4rE&part=statistics
-    const endpoint = `${baseUrl}/videos?key=${apiKey}&part=statistics&id=${videoId}`;
-    try {
-      const response = await fetch(endpoint);
-      const result = await response.json();
-      return result.items[0].statistics;
-    } catch (error) {
-      alert("Failed to fetch Statistics for ", videoId);
-    }
-  }
+            />
+            <div class="details">
+              <p class="gray-text">${video.snippet.title}</p>
+              <p>${video.snippet.channelTitle}</p>
+              <p class="gray-text">${video.snippet.viewCount} • 3 years ago</p>
+            </div>
+          `;
+        videolist.appendChild(div);
+  });
+}
+

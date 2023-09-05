@@ -1,5 +1,6 @@
 const apiKey = "AIzaSyAbPzWReORQfvFeis6me7LENetU2ddxsn4";
 const baseUrl = "https://www.googleapis.com/youtube/v3";
+let searchLink = "https://www.youtube.com/results?search_query=";
 
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
@@ -8,6 +9,9 @@ const container = document.getElementById("container");
 // Add a click event listener to the search button
 searchButton.addEventListener("click", () => {
   const searchValue = searchInput.value;
+  if(searchInput.value.length){
+    location.href = searchLink + searchInput.value;
+  }
   fetchSearchResults(searchValue);
   searchInput.value = ""; // Clear the input field after clicking the button
 });
@@ -126,38 +130,3 @@ async function fetchSearchResults(searchString) {
   }
 }
 
-//  {
-//     "kind": "youtube#searchResult",
-//     "etag": "Dn_HjQZj7iXCRkRlNQXL3xxXTxE",
-//     "id": {
-//         "kind": "youtube#video",
-//         "videoId": "_O_9HUZvJK4"
-//     },
-//     "snippet": {
-//         "publishedAt": "2023-07-31T13:18:46Z",
-//         "channelId": "UCJsApDpIBPpRRg0n9ZVmKAQ",
-//         "title": "Weather obsession of Bangalore people📈🤣 #shorts #ahmedmasood #bangalore #ytshorts",
-//         "description": "",
-//         "thumbnails": {
-//             "default": {
-//                 "url": "https://i.ytimg.com/vi/_O_9HUZvJK4/default.jpg",
-//                 "width": 120,
-//                 "height": 90
-//             },
-//             "medium": {
-//                 "url": "https://i.ytimg.com/vi/_O_9HUZvJK4/mqdefault.jpg",
-//                 "width": 320,
-//                 "height": 180
-//             },
-//             "high": {
-//                 "url": "https://i.ytimg.com/vi/_O_9HUZvJK4/hqdefault.jpg",
-//                 "width": 480,
-//                 "height": 360
-//             }
-//         },
-//         "channelTitle": "Ahmed Masood",
-//         "liveBroadcastContent": "none",
-//         "publishTime": "2023-07-31T13:18:46Z"
-//     },
-//     "statistics" :
-// }
