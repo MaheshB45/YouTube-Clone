@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Inter&family=Montserrat&family=Ubuntu&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+  }
+ .left{
+    width: 50%;
+    margin-top: 4rem;
+    margin-left: 6rem;
+    float: left;
+ }
+ .videolist{
+    width: 50%;
+    margin-top: 4rem;
+    margin-left: 1rem;
+    margin-right: 6rem;
+    float: right;
+    background: #FFF;
+ }
+ .list-item{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+ }
+ .thumbnail img{
+    width: 180px;
+    height: 80px;
+
+ }
+  /* #comments-container{
+    
+  } */
+  .comment {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px 4px rgba(202, 200, 200, 0.531);
+    padding: 8px 20px;
+    color: #FFF;
+    background: #212121;
+    border-bottom: 1px solid #373737;
+  }
+  
+  .author-profile {
+    margin-top: 1rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  #authorDisplayName{
+    margin-top: -0.5rem;
+    font-size: 8px;
+    width: 300px;
+    padding-left: 1rem;
+  }
+  #textDisplay{
+    width: 100%;
+    margin-top: -0.8rem;
+    margin-bottom: 0.5rem;
+    margin-left: 3rem;
+    color: #FFF;
+    font-size: 8px;
+  }
+  
